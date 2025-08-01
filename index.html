@@ -78,39 +78,39 @@
         <h2>Validador de Contraseña</h2>
         <div class="inputs">
             <input type="password" placeholder="Ingrese su Contraseña">
-            <i class="fa-solid fa-eye toggle_password", id="toggle_password>
+            <i class="fa-solid fa-eye toggle_password" , id="toggle_password>
 
             </i>
         </div>
-        <button id="btn_validate" onclick="validar()">Validar</button>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        function validar() {
-            alert("BOTON DE UNA FUNCION");
-        }
+        <button id=" btn_validate" onclick="validar()">Validar</button>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            function validar() {
+                alert("BOTON DE UNA FUNCION");
+            }
 
-        function loadpage() {
-            Swal.fire({
-                title: "Bienvenido",
-                text: "A mi sitio web",
-                icon: "success",
-                ShowConfirmButtom: false,
-                timer: 3000
-            });
-        }
-        //Declaracion de variables 
-        const toggle_password = document.getElementById("toggle_password");
-        const password = document.getElementById("password");
+            function loadpage() {
+                Swal.fire({
+                    title: "Bienvenido",
+                    text: "A mi sitio web",
+                    icon: "success",
+                    ShowConfirmButtom: false,
+                    timer: 3000
+                });
+            }
+            //Declaracion de variables 
+            const toggle_password = document.getElementById("toggle_password");
+            const password = document.getElementById("password");
 
-       //Logica del show/hide password
-       toggle_password.addEventListener("click",()=>{
-            const type = password.type === "password"  "text" : "password";
-            toggle_password.classList.toggle("fa-eye")
-            toggle_password.classList.toggle("fa-eye-slash")
-       })
+            //Logica del show/hide password
+            toggle_password.addEventListener("click", () => {
+                const type = password.type === "password"  "text" : "password";
+                toggle_password.classList.toggle("fa-eye")
+                toggle_password.classList.toggle("fa-eye-slash")
+            })
 
-    </script>
+        </script>
 </body>
 
 </html>
