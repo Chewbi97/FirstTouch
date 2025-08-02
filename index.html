@@ -27,30 +27,27 @@
             width: 300px;
             box-shadow: 53px 28px 62px 16px rgba(0, 0, 0, 0.5);
         }
-
         imput[type="password"],
         imput[type="text"] {
             width: 85%;
             font-size: 10px;
             border-radius: 5px;
-            padding: 5px;
-            border: 1px solid #000;
-            margin-top: 16px;
+            padding: 10px 40px 10px 10px;
+            border: 1px solid #000;           
         }
 
         #btn_validate {
             background-color: #8489f0;
-            margin-top: 10px;
+            margin-top: 15px;
             border: none;
             padding: 7px 20px;
             border-radius: 10px;
             font-size: 15px;
             box-shadow: 53px 28px 62px -26px rgba(0, 0, 0, 0.5);
             cursor: pointer;
-            transition: 0.5 all ease-in;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
         }
-
-        button:hover {
+        #btn_validate:hover {
             background: green;
             color: white;
             transform: scale(1.1);
@@ -65,7 +62,7 @@
             color: goldenrod;
         }
 
-        .imput {
+        .imputs{
             position: relative;
             width: 100%;
         }
@@ -74,18 +71,16 @@
 
 <body onload="loadpage()">
     <div class="container">
-        <h1>Sebastian Medina</h1>
+        
         <h2>Validador de Contraseña</h2>
         <div class="inputs">
-            <input type="password" placeholder="Ingrese su Contraseña">
-            <i class="fa-solid fa-eye toggle_password" , id="toggle_password>
-
-            </i>
+            <input type="password" id="password" placeholder="Ingrese su Contraseña">
+            <i class="fas fa-eye toggle_password" id="toggle_password"></i>
         </div>
-        <button id=" btn_validate" onclick="validar()">Validar</button>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script>
+        <button id="btn_validate" onclick="validar()">Validar</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
             function validar() {
                 alert("BOTON DE UNA FUNCION");
             }
@@ -100,17 +95,53 @@
                 });
             }
             //Declaracion de variables 
-            const toggle_password = document.getElementById("toggle_password");
-            const password = document.getElementById("password");
+        const toggle_password = document.getElementById("toggle_password");
+        const password = document.getElementById("password");
 
             //Logica del show/hide password
-            toggle_password.addEventListener("click", () => {
-                const type = password.type === "password"  "text" : "password";
-                toggle_password.classList.toggle("fa-eye")
-                toggle_password.classList.toggle("fa-eye-slash")
-            })
+        toggle_password.addEventListener("click", () => {
+            const type = password.type === "password" ? "text" : "password";
+            password.type = type;
+            toggle_password.classList.toggle("fa-eye")
+            toggle_password.classList.toggle("fa-eye-slash")
+        });
 
-        </script>
+        function validar(){
+            let password    = document.getElementById("password").value;
+            let lowercase   = /[a-z]/.test(password);
+            let uppercase   = /[A-Z]/.test(password);
+            let number      = /\d/.test(password);
+            let specialchar = /[\W_]/.test(password);
+            if(password.length < 8){
+                Swal.fire(
+                    "Error",
+                    "La contraseña debe tener al menos 8 caracteres.",
+                    "error"
+                );
+            }
+            if(specialchar && lowercase && uppercase && number){
+                Swal.fire(
+                    "Correcto",
+                    "La contraseña cumple con las condiciones.",
+                    "success"
+                );                    
+            }
+            else{
+                Swal.fire({
+                    icon: "error",
+                    title: "Contraseña Invalida",
+                    html: `
+                        <ul style="text-aling:start;">
+                            <li>${number ? "✅" : "❌" } Al menos un número</li>
+                            <li>${lowercase ? "✅" : "❌" } Al menos una minúscula</li>
+                            <li>${uppercase ? "✅" : "❌" } Al menos una mayúscula</li>
+                            <li>${specialchar ? "✅" : "❌" } Al menos un caracter especial</li>
+                        </ul>
+                    `
+                });                 
+            }
+        }        
+    </script>
 </body>
 
 </html>
