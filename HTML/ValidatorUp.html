@@ -26,6 +26,10 @@
             text-align: center;
             width: 300px;
             box-shadow: 53px 28px 62px 16px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            
         }
         imput[type="password"],
         imput[type="text"] {
@@ -66,6 +70,14 @@
             position: relative;
             width: 100%;
         }
+        a{
+            text-decoration: none;
+            color: #606060;
+        }
+        a:hover{
+            color: beige;
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -78,6 +90,7 @@
             <i class="fas fa-eye toggle_password" id="toggle_password"></i>
         </div>
         <button id="btn_validate" onclick="validar()">Validar</button>
+        <a href="../index.html">Volver atras</a>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
